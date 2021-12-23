@@ -6,13 +6,14 @@ void matrixCopy(int target[SIZE][SIZE], int source[SIZE][SIZE], int size);
 
 #include <stdio.h>
 #define SIZE 4
-void matrixCopy(int target[SIZE][SIZE], int source[SIZE][SIZE], int size);{
+void matrixCopy(int target[SIZE][SIZE], int source[SIZE][SIZE], int size) {
     for ( int i = 0; i < size; i++ ) {
         for (int j = 0; j < size; j++) {
             target[i][j] = source[i][j];
         }
     }
 }
+
 
 void matrixMultiply(int matrix[SIZE][SIZE], int size, int multiplier) {
     for( int row = 0; row < size; row++ ) {
@@ -73,6 +74,7 @@ int main() {
     int decrement[SIZE][SIZE];
     matrixScan(in,matrix, 4);
     matrixMultiply(matrix, 4, 10);
+    matrixCopy(source, 4);
     matrixPrint(out, matrix, 4);
     // matrixPrint(matrix);
 

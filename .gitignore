@@ -1,4 +1,6 @@
 *.o
+a.out
+complexity_typeA.c
 test.c
 test1.c
 test2.c

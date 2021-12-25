@@ -1,6 +1,7 @@
 *.o
 a.out
 complexity_typeA.c
+complexlyty.c
 test.c
 test1.c
 test2.c

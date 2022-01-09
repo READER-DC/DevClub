@@ -6,7 +6,7 @@ void arrayShift(int array[], int size, int shift)
 Реализовать циклический сдвиг массива на shift элементов вправо. Максимизировать производительность при оптимальном использовании памяти.
 Требуемая сложность: O(N)
 
-!!!!Программу нужно оптимизировать. Лишние инструкции: 101.
+Программу нужно оптимизировать. Лишние инструкции: 9.
 
 */
 
@@ -16,46 +16,37 @@ void arrayShift(int array[], int size, int shift)
 void arrayShift(int array[], int size, int shift) {
     int limit = size / 2;
     int target[limit];
-    int shiftCorrect = shift % size;
+    int moovePoint;
+
+    shift = shift%size;
     
-    if ( shiftCorrect < 0 ) {
-        shiftCorrect = size + shiftCorrect;
+    if ( shift < 0 ) {
+        shift = size + shift;
     }
+    moovePoint = size - shift;
     
-    if ( shiftCorrect > size / 2 ) {
-        for ( int i = 0; i < size - shiftCorrect; i++ ) {
+    if ( shift > size / 2 ) {
+        for ( int i = 0; i < moovePoint; i++ ) {
             target[i] = array[i];
         }
-        for ( int i = 0; i < shiftCorrect; i++ ) {
-            int mooveRight = size - shiftCorrect + i;
-            
-            array[i] = array[mooveRight];
+        for ( int i = 0, j = moovePoint; i < shift; i++, j++ ) {
+            array[i] = array[j];
         }
-        for ( int i = 0; i < size - shiftCorrect; i++ ) {
-            int mooveRight = shiftCorrect + i;
-            
-            array[mooveRight] = target[i];
+        for ( int i = 0, j = shift; i < moovePoint; i++, j++ ) {
+            array[j] = target[i];
         }
-    }
-    
-    if ( shiftCorrect <= size / 2 ) {
-        for ( int i = 0; i < shiftCorrect; i++ ) {
-            int mooveRight = size - shiftCorrect + i;
-            
-            target[i] = array[mooveRight];
+    } else {
+        for ( int i = 0, j = moovePoint; i < shift; i++, j++ ) {
+            target[i] = array[j];
         }
-        for ( int i = 0; i < size - shiftCorrect; i++ ) {
-            int mooveLeft = size - shiftCorrect - i - 1;
-            int stepLeft = size - i - 1;
-            
-            array[stepLeft] = array[mooveLeft];
+        for ( int i = size - 1, j = moovePoint - 1; j >= 0; i--, j-- ) {
+            array[i] = array[j];
         }
-        for ( int i = 0; i < shiftCorrect; i++ ) {
+        for ( int i = 0; i < shift; i++ ) {
             array[i] = target[i];
         }
     }
 }
-
 
 
 void arrayPrint(FILE *out, int array[], int size) {
@@ -85,12 +76,12 @@ int main() {
     int len1;
     int len2;
 
-    len1 = arrayScan(in, src1, 3);
+    len1 = arrayScan(in, src1, 16);
     arrayPrint(out, src1, len1);
 
 
-    arrayShift(src1, len1, -5);
-    arrayPrint (out, src1, 3);
+    arrayShift(src1, len1, 5);
+    arrayPrint (out, src1, 16);
 
 
     fclose (out);
@@ -99,6 +90,56 @@ int main() {
 
     return 0;
 }
+
+/* !!!!Программу нужно оптимизировать. Лишние инструкции: 45
+void arrayShift(int array[], int size, int shift) {
+    int limit = size / 2;
+    int target[limit];
+    int shiftCorrect = shift % size;
+    int moovePoint;
+    int mooveRight;
+    
+    if ( shiftCorrect < 0 ) {
+        shiftCorrect = size + shiftCorrect;
+    }
+    
+    if ( shiftCorrect > size / 2 ) {
+        moovePoint = size - shiftCorrect;
+        
+        for ( int i = 0; i < moovePoint; i++ ) {
+            target[i] = array[i];
+        }
+        for ( int i = 0; i < shiftCorrect; i++ ) {
+            mooveRight = moovePoint + i;
+            array[i] = array[mooveRight];
+        }
+        for ( int i = 0; i < moovePoint; i++ ) {
+            mooveRight = shiftCorrect + i;
+            array[mooveRight] = target[i];
+        }
+    } else {
+        int mooveLeft;
+        int stepLeft;
+        
+        moovePoint = size - shiftCorrect;
+        for ( int i = 0; i < shiftCorrect; i++ ) {
+            mooveRight = moovePoint + i;
+            target[i] = array[mooveRight];
+        }
+        for ( int i = 0; i < moovePoint; i++ ) {
+            mooveLeft = moovePoint - i - 1;
+            stepLeft = size - i - 1;
+            
+            array[stepLeft] = array[mooveLeft];
+        }
+        for ( int i = 0; i < shiftCorrect; i++ ) {
+            array[i] = target[i];
+        }
+    }
+}
+*/
+
+
 /* Программа вернула 139 во время одного из тестов.
 void arrayShift(int array[], int size, int shift) {
     int target[shift];

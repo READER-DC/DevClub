@@ -1,27 +1,12 @@
 /*
-Условие задачи
-
-Написать функцию:
-int arrayUnique(int array[], int size)
-Удалить из массива дубликаты элементов. Вернуть новую длину массива.
-
-Примечание: пример ввода и вывода показан для лучшего понимания условия задачи. Выводить результат на печать не нужно.
-Пример ввода
-
-1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 5 4 3 2 1
-
-Пример вывода
-
-array = 1 2 3 4 5 6 7 8 9 10
-len = 10
-    code works
+void bubbleSort(int array[], int size)
+code works
 */
 
 #include <stdio.h>
 #define LIMIT 500
 
-int arrayUnique(int array[], int size) {
-    int length = 0;
+void bubbleSort(int array[], int size) {
     int tmp;
     
     for ( int i = 0; i < size; i++ ) {
@@ -33,13 +18,6 @@ int arrayUnique(int array[], int size) {
             }
         }
     }
-    for ( int i = 0; i < size; i++ ) {
-        if ( array[i] != array[i+1] ) {
-            array[length]=array[i];
-            length = length + 1;
-        }
-    }
-    return length;
 }
 
 

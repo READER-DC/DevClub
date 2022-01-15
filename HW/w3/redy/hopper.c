@@ -19,10 +19,49 @@
 На 1-ю клетку он может попасть одним способом: 0->1.
 На 2-ю клетку он может попасть двумя способами: 0->2, 0->1->2.
 На 3-ю клетку можно попасть тремя способами: 0->1->2->3, 0->1->3, 0->2->3.
-
-review fail - Программу нужно укоротить. Лишние строки: 5.
+code works
 */
 
+
+
+#include <stdio.h>
+
+#define LIMIT 100
+
+void arrayZeroFill(unsigned long long array[], int size) {
+    for ( int i = 0; i < size; i++ ) {
+        array[i] = 0;
+    }
+}
+
+int main() {
+    int cell;
+    int maxJump;
+    unsigned long long ways[LIMIT];
+    FILE *in = fopen("task.in", "r");
+    FILE *out = fopen("task.out", "w");
+    
+    fscanf(in, "%d %d", &maxJump, &cell);
+    
+    if ( maxJump > cell ) {
+        maxJump = cell;
+    }
+    arrayZeroFill(ways, cell);
+    for ( int i = 0; i < maxJump; i++ ) {
+        ways[i] = 1 << i;
+    }
+    
+    for ( int i = maxJump, k = 0; i < cell; i++ ) {
+        for ( int j = 1; j <= maxJump; j++ ) {
+            k = i - j;
+            ways[i] += ways[k];
+        }
+    }
+    fprintf(out, "%llu\n", ways[cell-1]);
+    return 0;
+}
+
+/* review fail - Программу нужно укоротить. Лишние строки: 5.
 #include <stdio.h>
 
 #define LIMIT 100
@@ -44,35 +83,34 @@ void arrayPrint(FILE *out, unsigned long long int array[], int size) {
 int main() {
     int cell;
     int maxJump;
-    int limit;
-    
+    unsigned long long ways[LIMIT];
     FILE *in = fopen("task.in", "r");
     FILE *out = fopen("task.out", "w");
+    
+    fscanf(in, "%d %d", &maxJump, &cell);
 
-    fscanf( in,"%d", &maxJump);
-    fscanf( in, "%d", &cell);
-
-    unsigned long long int ways[LIMIT];
-
-    arrayZeroFill(ways,LIMIT);
     if ( maxJump > cell ) {
         maxJump = cell;
     }
-
+    arrayZeroFill(ways, cell);
     for ( int i = 0; i < maxJump; i++ ) {
         ways[i] = 1 << i;
     }
-    for ( int i = maxJump; i < cell; i++ ) {
-        for (int j = 1; j <= maxJump; j++) {
-            ways[i] += ways[i-j];
+    
+    for ( int i = maxJump, k = 0; i < cell; i++ ) {
+        for ( int j = 1; j <= maxJump; j++ ) {
+            k = i - j;
+            ways[i] += ways[k];
         }
     }
     arrayPrint(out, ways, cell);
     fprintf(out, "%llu\n", ways[cell-1]);
     fclose(out);
-
+    
     return 0;
 }
+*/
+
 
 /* 9/20 tests passed
 #include <stdio.h>

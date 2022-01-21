@@ -34,6 +34,7 @@ int partition(int array[], int start, int end) {
     array[end] = pivot;
     return idPivot;
 }
+
 void quickSort (int array[], int start, int end) {
     int idPivot;
     
@@ -61,8 +62,6 @@ int arrayScan(FILE *in, int array[], int limit) {
     for ( ; length < limit && fscanf(in, "%d", &array[length]) == 1; length++ );
     return length;
 }
-
-
 
 int main() {
     FILE *in = fopen("task.in", "r");

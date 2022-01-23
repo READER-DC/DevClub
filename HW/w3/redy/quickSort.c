@@ -35,7 +35,7 @@ int partition(int array[], int start, int end) {
     return idPivot;
 }
 
-void quickSort (int array[], int start, int end) {
+void quickSort(int array[], int start, int end) {
     int idPivot;
     
     if ( start >= end ) {
@@ -43,7 +43,7 @@ void quickSort (int array[], int start, int end) {
     }
     idPivot = partition(array, start, end);
     quickSort(array, start, idPivot-1);
-    quickSort(array, idPivot+1, end) ;
+    quickSort(array, idPivot+1, end);
     
 }
 

@@ -14,6 +14,7 @@ e 1
 h 1
 l 2
 o 1
+3/8 tests passed - добавлю проверку на латниские буквы.
 */
 
 #include <stdio.h>
@@ -34,12 +35,13 @@ void strLowerrCase(char str[]) {
         }
     }
 }
+
 int partition(char array[], int start, int end) {
     int mid = (start + end) / 2;
     int pivot;
     int idPivot = start;
     int idArray = start;
-
+    
     pivot = array[mid];
     array[mid] = array[end];
     array[end] = pivot;
@@ -57,7 +59,7 @@ int partition(char array[], int start, int end) {
     return idPivot;
 }
 
-void quickSort (char array[], int start, int end) {
+void quickSort(char array[], int start, int end) {
     int idPivot;
     
     if ( start >= end ) {
@@ -65,42 +67,40 @@ void quickSort (char array[], int start, int end) {
     }
     idPivot = partition(array, start, end);
     quickSort(array, start, idPivot-1);
-    quickSort(array, idPivot+1, end) ;
-    
+    quickSort(array, idPivot+1, end);
 }
 
-void charCount(FILE *out, char array[], int len){
+void charCount(FILE *out, char array[], int len) {
     char targetChar[len];
     char check;
     int count = 0;
-    int j = 0 ;
     int k = 0;
-
+    
     strLowerrCase(array);
-    quickSort(array,0, len-1);
-
+    quickSort(array, 0, len-1);
+    
     for ( int i = 0; i < len; i++ ) {
         check = array[i];
-        for ( int j = 0 ; j <= i ; j ++ ) {
+        for ( int j = 0; j <= i; j++ ) {
             if ( check == targetChar[j] ) {
-            count += 1;
+                count += 1;
             }
         }
         if ( count == 0 ) {
             targetChar[k] = check;
-            k += 1 ;
+            k += 1;
         }
         count = 0;
     }
-
+    
     for ( int i = 0; i < k; i++ ) {
         count = 0;
         for ( int j = 0; j < len; j++ ) {
-            if ( targetChar[i] == array[j]) {
+            if ( targetChar[i] == array[j] ) {
                 count += 1;
             }
         }
-        fprintf(out, "%c %d \n", targetChar[i], count );
+        fprintf(out, "%c %d\n", targetChar[i], count);
     }
 }
 
@@ -118,4 +118,3 @@ int main() {
     
     return 0;
 }
-

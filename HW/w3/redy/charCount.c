@@ -14,12 +14,13 @@ e 1
 h 1
 l 2
 o 1
-3/8 tests passed - добавлю проверку на латниские буквы.
+3/8 tests passed - добавил проверку на латниские буквы.
+code works
 */
 
 #include <stdio.h>
 
-#define LIMIT 500
+#define LIMIT 5000
 
 int arrayScan(FILE *in, char array[], int limit) {
     int length = 0;
@@ -81,6 +82,9 @@ void charCount(FILE *out, char array[], int len) {
     
     for ( int i = 0; i < len; i++ ) {
         check = array[i];
+        if ( check < 'a' || check > 'z' ) {
+            count = 1;
+        }
         for ( int j = 0; j <= i; j++ ) {
             if ( check == targetChar[j] ) {
                 count += 1;

@@ -1,4 +1,5 @@
 *.o
+*.exe
 a.out
 complexity_typeA.c
 complexlyty.c
@@ -10,3 +11,4 @@ test1
 test2
 task.in
 task.out
+

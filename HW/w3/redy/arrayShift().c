@@ -6,10 +6,91 @@ void arrayShift(int array[], int size, int shift)
 Реализовать циклический сдвиг массива на shift элементов вправо. Максимизировать производительность при оптимальном использовании памяти.
 Требуемая сложность: O(N)
 
-Программу нужно оптимизировать. Лишние инструкции: 9.
+Программу нужно оптимизировать. Лишние инструкции: 3.
 
 */
 
+#include <stdio.h>
+#define LIMIT 500
+
+void arrayShift(int array[], int size, int shift) {
+    int limit = size / 2;
+    int target[limit];
+    
+    shift = shift % size;
+    
+    if ( shift < 0 ) {
+        shift = size + shift;
+    }
+    
+    if ( shift < size / 2 ) {
+        for ( int i = size - shift, j = 0; i < size; i++, j++ ) {
+            target[j] = array[i];
+        }
+        for ( int i = size - 1, j = size - 1 - shift; i >= shift; i--, j-- ) {
+            array[i] = array[j];
+        }
+        for ( int i = 0; i < shift; i++ ) {
+            array[i] = target[i];
+        }
+    } else {
+        for ( int i = size - 1 - shift; i >= 0; i-- ) {
+            target[i] = array[i];
+        }
+        for ( int i = 0, j = size - shift; i < shift; i++, j++ ) {
+            array[i] = array[j];
+        }
+        for ( int i = size - 1, j = size - 1 - shift; j >= 0; i--, j-- ) {
+            array[i] = target[j];
+        }
+    }
+}
+
+
+
+void arrayPrint(FILE *out, int array[], int size) {
+    int last = size - 1;
+    
+    for ( int i = 0; i < last; i++ ) {
+        fprintf(out, "%d_", array[i]);
+    }
+    fprintf(out, "%d\n", array[last]);
+}
+
+int arrayScan(FILE *in, int array[], int limit) {
+    int length = 0;
+    
+    for ( ; length < limit && fscanf(in, "%d", &array[length]) == 1; length++ );
+    return length;
+}
+
+
+
+int main() {
+    FILE *in = fopen("task.in", "r");
+    FILE *out = fopen("task.out", "w");
+    int src1[LIMIT];
+    int src2[LIMIT];
+    int target[LIMIT];
+    int len1;
+    int len2;
+
+    len1 = arrayScan(in, src1, LIMIT);
+    arrayPrint(out, src1, len1);
+
+
+    arrayShift(src1, len1, 5);
+    arrayPrint (out, src1, 15);
+
+
+    fclose (out);
+    fclose (in);
+
+
+    return 0;
+}
+
+/*
 #include <stdio.h>
 #define LIMIT 500
 
@@ -90,6 +171,7 @@ int main() {
 
     return 0;
 }
+*/
 
 /* !!!!Программу нужно оптимизировать. Лишние инструкции: 45
 void arrayShift(int array[], int size, int shift) {

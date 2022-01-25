@@ -6,8 +6,7 @@ void arrayShift(int array[], int size, int shift)
 Реализовать циклический сдвиг массива на shift элементов вправо. Максимизировать производительность при оптимальном использовании памяти.
 Требуемая сложность: O(N)
 
-Программу нужно оптимизировать. Лишние инструкции: 3.
-
+code works
 */
 
 #include <stdio.h>
@@ -23,7 +22,7 @@ void arrayShift(int array[], int size, int shift) {
         shift = size + shift;
     }
     
-    if ( shift < size / 2 ) {
+    if ( shift < limit ) {
         for ( int i = size - shift, j = 0; i < size; i++, j++ ) {
             target[j] = array[i];
         }

@@ -22,7 +22,7 @@ int fibonacci(int n) {
 
 int main() {
     int result;
-    result = factorial(14);
+    result = fibonacci(14);
 
     printf("%llu\n", result);
 

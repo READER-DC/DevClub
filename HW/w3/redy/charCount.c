@@ -21,6 +21,65 @@ UPD не допер можно брать алфавит и сравнивать
 
 #include <stdio.h>
 
+#define SIZE 26
+
+void strLowerrCase(char str[]) {
+    for ( ; *str != 0; str++ ) {
+        if ( *str >= 'A' && *str <= 'Z' ) {
+            *str = *str - 'A' + 'a';
+        }
+    }
+}
+
+void arrayZeroFill(int array[], int size) {
+    for ( int i = 0; i < size; i++ ) {
+        array[i] = 0;
+    }
+}
+
+void arrayPrint(FILE *out, int array[], int size) {
+    for ( int i = 0; i < size; i++ ) {
+        if ( array[i] != 0 ) {
+            fprintf(out, "%c %d\n", i+'a', array[i]);
+        }
+        
+    }
+}
+
+int main() {
+    FILE *in = fopen("task.in", "r");
+    FILE *out = fopen("task.out", "w");
+    char symbol;
+    int array[SIZE];
+    int offset;
+    
+    arrayZeroFill(array, SIZE);
+    
+    for ( ; fscanf(in, "%c", &symbol) == 1; ) {
+        if ( symbol >= 'A' && symbol <= 'Z' ) {
+            symbol = symbol - 'A' + 'a';
+        }
+        
+        offset = symbol - 'a';
+        
+        if ( symbol >= 'a' && symbol <= 'z' ) {
+            array[offset] += 1;
+        }
+    }
+    
+    arrayPrint(out, array, SIZE);
+    
+    fclose(in);
+    fclose(out);
+    
+    return 0;
+}
+
+
+
+/*
+#include <stdio.h>
+
 #define LIMIT 5000
 
 int arrayScan(FILE *in, char array[], int limit) {
@@ -123,3 +182,5 @@ int main() {
     
     return 0;
 }
+
+*/

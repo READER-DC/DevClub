@@ -9,23 +9,23 @@ Point::~Point() {
 
 }
 
-double Point:: getX() const {
+double Point::getX() const {
     return this->x;
 }
 
-double Point:: getY() const{
+double Point::getY() const{
     return this->y;
 }
 
-void Point:: setX(double value){
+void Point::setX(double value){
     this->x = value;
 }
 
-void Point:: setY(double value){
+void Point::setY(double value){
     this->y = value;
 }
 
-double Point:: distance(const Point& other) const{
+double Point::distance(const Point& other) const{
     return hypot(this->x - other.x, this->y - other.y);
 }
 

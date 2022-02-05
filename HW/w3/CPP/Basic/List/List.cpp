@@ -69,6 +69,11 @@ void List::insert(int value, int index){
 }
 
 int List::find(int value) const{
+    for ( int i = 0; i < size(); i++ ) {
+        if ( array[i] == value ) {
+            return i;
+        }
+    }
     return 0;
 }
 
@@ -99,6 +104,18 @@ int List::pop_back(){
 }
 
 void List::sort(){
+    int min;
+    
+    for ( int i = 0; i < size(); i++ ) {
+        min = array[i];
+        for ( int j = 0; j < i; j++ ) {
+            if ( array[j] > min ) {
+                min = array[j];
+                array[j] = array[i];
+                array[i] = min;
+            }
+        }
+    }
 
 }
 
@@ -118,7 +135,14 @@ bool List::operator==(const List& other) const{
 }
 
 bool List::operator!=(const List& other) const{
-    return 0;
+    int i = 0;
+    for ( ;array[i] == other[i] && i < this->size(); i++ );
+
+    if ( array[current] == other[i] && this->size() == other.size() ) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 std::ostream& operator<<(std::ostream& out, const List& list){

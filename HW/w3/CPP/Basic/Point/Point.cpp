@@ -34,7 +34,7 @@ bool Point:: operator==(const Point& other) const{
 }
 
 bool Point:: operator!=(const Point& other) const{
-    return this->x != other.x && this->y != other.y;
+    return this->x != other.x || this->y != other.y;
 }
 
 std::ostream& operator<<(std::ostream& out, const Point& point)

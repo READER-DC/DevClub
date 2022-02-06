@@ -8,4 +8,5 @@ int main () {
 
     pen.write(paper, "Hello, world!");
     paper.show();
+    return 0;
 }

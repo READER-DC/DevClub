@@ -30,24 +30,22 @@ const std::string& Car::getModel() const{
 void Car::drive(const Point& destination){
     double newFuelConsumption;
     newFuelConsumption = destination.distance(getLocation()) * getFuelConsumption();
-    if (newFuelConsumption <= getFuelAmount() ) {
-        this->location = destination;
-        this->fuelAmount = this->fuelAmount  - newFuelConsumption;
+    if (newFuelConsumption > getFuelAmount() ) {
+        throw OutOfFuel();
     }
+    this->location = destination;
+    this->fuelAmount = this->fuelAmount - newFuelConsumption;
 }
 void Car::drive(double x, double y){
-    double newFuelConsumption;
-    Point a(x, y);
-    newFuelConsumption = a.distance(getLocation()) * getFuelConsumption();
-    if (newFuelConsumption <= getFuelAmount() ) {
-        this->location = a;
-        this->fuelAmount = this->fuelAmount  - newFuelConsumption;
-    }
+    Point destination(x, y);
+    this->drive(destination);
 }
 void Car::refill(double fuel){
-    if (this->fuelAmount + fuel > this->fuelCapacity) {
-        this->fuelAmount = this->fuelCapacity;
+    double newFuelAmount = getFuelAmount();
+    if ( newFuelAmount + fuel > getFuelCapacity()) {
+        throw ToMuchFuel();
     }
+    this->fuelAmount = newFuelAmount+fuel;
 }
 
 std::ostream& operator<<(std::ostream& out, const Car& car){
@@ -58,5 +56,3 @@ std::ostream& operator<<(std::ostream& out, const Car& car){
     return out;
 }
 
-class OutOfFuel {};
-class ToMuchFuel {};

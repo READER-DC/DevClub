@@ -17,7 +17,7 @@ int Pen::getInkCapacity() const{
 
 void Pen::write(Paper& paper, const std::string& message){
     
-    if ( inkAmount == 0 ) {
+    if ( inkAmount <= 0 ) {
         throw OutOfInk();
     }
     if ( message.size() >= this->inkAmount ) {

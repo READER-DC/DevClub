@@ -20,30 +20,19 @@
 
 int main() {
     Car car;
+    Car volvo(100, 1, (0, 0), "Volvo s40");
 
     std::cout << car << std::endl;
-    car.refill(100);
+    std::cout << volvo << std::endl;
+    
+    car.refill(60);
+    volvo.refill(100);
 
-    car.drive(Point(5, 11));
-
+    car.drive(Point(30, 90));
     std::cout << car << std::endl;
     
-    car.drive(Point(10, 22));
-    std::cout << car << std::endl;
-    
-    car.drive(Point(5, 11));
-    std::cout << car << std::endl;
-    
-    car.drive(Point(0, 0));
-    
-    car.drive(5, 11);
-    std::cout << car << std::endl;
-    
-    car.drive(10, 22);
-    std::cout << car << std::endl;
-    
-    car.drive(5, 11);
-    std::cout << car << std::endl;
+    volvo.drive(30, 90);
+    std::cout << volvo << std::endl;
     
     return 0;
 }

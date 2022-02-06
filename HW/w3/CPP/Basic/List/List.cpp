@@ -21,6 +21,10 @@ int List::max_size() const{
 }
 
 void List::erase(int index){
+    if ( index > current || current == 0 ) {
+        throw ZeroLenException();
+    }
+    
     int newCurrent = current - 1;
 
     for ( ;index < size(); index++ ) {

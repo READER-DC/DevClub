@@ -11,6 +11,51 @@ int main() {
 
     std::cout << barbarian << std::endl;
     std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    barbarian.attack(knight);
+
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+
+    try {
+        barbarian.attack(knight);
+    }
+    catch (...) {
+    std::cout << barbarian << std::endl;
+    std::cout << knight << std::endl;
+    }
+
+
     return 0;
 }
 /*

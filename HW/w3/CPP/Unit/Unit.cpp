@@ -25,38 +25,44 @@ const std::string& Unit::getName() const{
 }
 
 void Unit::addHitPoints(int hp){
-    
+    ensureIsAlive();
+    if ( this->hitPoints + hp >= this->hitPointsLimit ) {
+      this->hitPoints = this->hitPointsLimit;
+    } else {
+      this->hitPoints += hp;
+    }
 }
 void Unit::takeDamage(int dmg){
-    
+    ensureIsAlive();
+    if (this->damage >= this->hitPoints ) {
+      this->hitPoints = 0;
+    } else {
+      this->hitPoints -= dmg;
+    }
 }
 
 void Unit::attack(Unit& enemy){
-    
+    ensureIsAlive();
+    enemy.takeDamage(this->damage);
+    enemy.counterAttack(*this);
 }
 void Unit::counterAttack(Unit& enemy){
-    
+    ensureIsAlive();
+    enemy.takeDamage(this->damage / 2);
+
 }
 
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit){
-    
+    out << unit.getName()
+        << " (" << unit.getHitPoints() << ")";
+
+    return out;
+
 }
 
 void Unit::ensureIsAlive() {
    if ( hitPoints == 0 ) {
        throw UnitIsDead();
    }
-}
-
-void Unit::addHitPoints(int hp) {
-   ensureIsAlive();
-
-   ...
-}
-
-void Unit::takeDamage(int dmg) {
-   ensureIsAlive();
-
-  ...
 }

@@ -1,68 +1,84 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name, int hp, int dmg){
+Unit::Unit(const std::string& name, int hp, int dmg)
+{
     this->damage = dmg;
     this->hitPoints = hp;
     this->hitPointsLimit = hp;
     this->name = name;
     
 }
-Unit::~Unit(){
+Unit::~Unit()
+{
     
 }
 
-int Unit::getDamage() const{
+int Unit::getDamage() const
+{
     return this->damage;
 }
-int Unit::getHitPoints() const{
+int Unit::getHitPoints() const
+{
     return this->hitPoints;
 }
-int Unit::getHitPointsLimit() const{
+int Unit::getHitPointsLimit() const
+{
     return this->hitPointsLimit;
 }
-const std::string& Unit::getName() const{
+const std::string& Unit::getName() const
+{
     return this->name;
 }
 
-void Unit::addHitPoints(int hp){
+void Unit::addHitPoints(int hp)
+{
     ensureIsAlive();
-    if ( this->hitPoints + hp >= this->hitPointsLimit ) {
+    if ( this->hitPoints + hp >= this->hitPointsLimit )
+    {
       this->hitPoints = this->hitPointsLimit;
-    } else {
+    } else 
+    {
       this->hitPoints += hp;
     }
 }
-void Unit::takeDamage(int dmg){
+void Unit::takeDamage(int dmg)
+{
     ensureIsAlive();
-    if (this->damage >= this->hitPoints ) {
+    if ( this->damage >= this->hitPoints )
+    {
       this->hitPoints = 0;
-    } else {
+    } else 
+    {
       this->hitPoints -= dmg;
     }
 }
 
-void Unit::attack(Unit& enemy){
+void Unit::attack(Unit& enemy)
+{
     ensureIsAlive();
     enemy.takeDamage(this->damage);
     enemy.counterAttack(*this);
 }
-void Unit::counterAttack(Unit& enemy){
+void Unit::counterAttack(Unit& enemy)
+{
     ensureIsAlive();
     enemy.takeDamage(this->damage / 2);
 
 }
 
 
-std::ostream& operator<<(std::ostream& out, const Unit& unit){
+std::ostream& operator<<(std::ostream& out, const Unit& unit)
+{
     out << unit.getName()
         << " (" << unit.getHitPoints() << ")";
 
     return out;
-
 }
 
-void Unit::ensureIsAlive() {
-   if ( hitPoints == 0 ) {
+void Unit::ensureIsAlive()
+{
+   if ( hitPoints == 0 )
+   {
        throw UnitIsDead();
    }
 }

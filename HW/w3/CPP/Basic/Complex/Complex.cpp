@@ -1,60 +1,78 @@
 #include "Complex.h"
 
-Complex::Complex(double real, double imaginary){
+Complex::Complex(double real, double imaginary)
+{
     this->real = real;
     this->imaginary = imaginary;
 }
 
-Complex::~Complex(){
+Complex::~Complex()
+{
+
 }
 
-double Complex::getReal() const{
+double Complex::getReal() const
+{
     return this->real;
 }
-double Complex::getImaginary() const{
+double Complex::getImaginary() const
+{
     return this->imaginary;
 }
 
-bool Complex::operator==(const Complex& other) const{
+bool Complex::operator==(const Complex& other) const
+{
     return this->real == other.getReal() && this->imaginary == other.getImaginary();
 }
-bool Complex::operator!=(const Complex& other) const{
-    return this->real != other.getReal() || this->imaginary != other.getImaginary();;
+bool Complex::operator!=(const Complex& other) const
+{
+    return this->real != other.getReal() || this->imaginary != other.getImaginary();
 }
-void Complex::operator+=(const Complex& other){
+void Complex::operator+=(const Complex& other)
+{
     this->real += other.getReal();
     this->imaginary += other.getImaginary();
 
 }
-void Complex::operator-=(const Complex& other){
+void Complex::operator-=(const Complex& other)
+{
     this->real -= other.getReal();
     this->imaginary -= other.getImaginary();
 
 }
-Complex Complex::operator+(const Complex& other) const{
+Complex Complex::operator+(const Complex& other) const
+{
     Complex temp;
     temp.real = this->real + other.getReal();
     temp.imaginary = this->imaginary + other.getImaginary();
+
     return temp;
 }
-Complex Complex::operator-(const Complex& other) const{
+Complex Complex::operator-(const Complex& other) const
+{
     Complex temp;
     temp.real = this->real - other.getReal();
     temp.imaginary = this->imaginary - other.getImaginary();
+
     return temp;
 }
-Complex Complex::operator*(const Complex& other) const{
+Complex Complex::operator*(const Complex& other) const
+{
    Complex temp;
     temp.real = this->real * other.getReal() - this->imaginary * other.getImaginary();
-    temp.imaginary = this->real * other.getImaginary() + this->imaginary * other.getReal() ;
+    temp.imaginary = this->real * other.getImaginary() + this->imaginary * other.getReal();
+
     return temp;
 }
 
-std::ostream& operator<<(std::ostream& out, const Complex& complex) {
+std::ostream& operator<<(std::ostream& out, const Complex& complex)
+{
     char z = '+';
-    if ( complex.getImaginary() < 0 ) {
+    if ( complex.getImaginary() < 0 ) 
+    {
         out << complex.getReal() << complex.getImaginary()<<"i";
-    } else {
+    } else
+    {
         out << complex.getReal() << z << complex.getImaginary()<<"i";
     }
     

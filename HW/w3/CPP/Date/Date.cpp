@@ -35,7 +35,7 @@ void Date::validate(int day, int month, int year)
     {
         throw InvalidDate("value Invalid  'Month' ");
     }
-    if ( this->year % 4 == 0 && ( this->year % 100 != 0 || this->year % 400 == 0) )
+    if ( this->year % 4 == 0 && ( this->year % 100 != 0 || this->year % 400 == 0))
     {
         daysInMonth[1] += 1;
     } 
@@ -44,7 +44,8 @@ void Date::validate(int day, int month, int year)
         daysInMonth[1] = 28;
     }
 
-    if ( day > daysInMonth[month-1] || day <= 0) {
+    if ( day > daysInMonth[month-1] || day <= 0) 
+    {
         throw InvalidDate("value Invalid  'Day' ");
     }
 

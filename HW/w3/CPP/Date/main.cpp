@@ -2,22 +2,9 @@
 
 int main()
 {
-    Date date;
-    try {
-        
-        Date date(18, 00, 1997);
-    }
-    catch (InvalidDate obj) {
-        std::cout<<obj.text<<std::endl;
+    Date date(18, 06, 1997);
 
-    }
-
-    catch(...) {
-
-    }
     std::cout << date << std::endl;
-
-    
 
     return 0;
 }

@@ -37,7 +37,7 @@ void Car::drive(const Point& destination)
 {
     double newFuelConsumption;
     newFuelConsumption = destination.distance(this->location) * this->fuelConsumption;
-    if ( newFuelConsumption > this->fuelAmount )
+    if ( newFuelConsumption > this->fuelAmount || this->fuelAmount == 0)
     {
         throw OutOfFuel();
     }

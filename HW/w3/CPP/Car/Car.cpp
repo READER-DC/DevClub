@@ -1,12 +1,13 @@
 #include "Car.h"
 
 Car::Car(double capacity, double consumption, const Point& location, const std::string& model){
-        this->fuelCapacity = 0; //Запас топлива
-        this->fuelAmount = capacity;//количество топлива, которое затратит машинка.
+        this->fuelCapacity = 0;
+        this->fuelAmount = capacity;
         this->fuelConsumption = consumption;
         this->location = location;
         this->model = model;
 }
+
 Car::~Car()
 {
 
@@ -36,7 +37,7 @@ const std::string& Car::getModel() const
 void Car::drive(const Point& destination)
 {
     double newFuelConsumption;
-    newFuelConsumption = destination.distance(this->location) * this->fuelConsumption;
+    newFuelConsumption = this->location.distance(destination) * this->fuelConsumption;
     if ( newFuelConsumption > this->fuelCapacity || this->fuelCapacity == 0)
     {
         throw OutOfFuel();
@@ -62,7 +63,8 @@ std::ostream& operator<<(std::ostream& out, const Car& car)
 {
     out << "    model : "<< car.getModel()
         << "    location : "<< car.getLocation()
-        << "    fuelAmount : " << car.getFuelAmount();
+        << "    fuelAmount : " << car.getFuelAmount()
+        << "    fuelCapacity: " << car.getFuelCapacity();
     return out;
 }
 

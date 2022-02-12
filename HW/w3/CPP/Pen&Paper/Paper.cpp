@@ -31,7 +31,7 @@ void Paper::addContent(const std::string& message)
     if ( futureContent > this->maxSymbols )
     {
         this->content.append(message.substr(0, this->maxSymbols - this->symbols));
-        this->symbols = futureContent - this->maxSymbols;
+        this->symbols = this->maxSymbols;
     } else {
         this->content.append(message);
     }

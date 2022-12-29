@@ -1,6 +1,6 @@
 *.o
 *.exe
-a.out
+*.out
 complexity_typeA.c
 complexlyty.c
 test.c

@@ -2,16 +2,18 @@
 
 #include "User.h"
 #include "Article.h"
+#include "Manager.h"
 
 int main()
 {
+	Manager manager;
 	Article art1(1);
 	Article art2(2);
 	Article art3(3);
 
-	User user1(1);
-	User user2(2);
-	User user3(3);
+	User user1(1, manager);
+	User user2(2, manager);
+	User user3(3, manager);
 
 	user1.like(art1);
 

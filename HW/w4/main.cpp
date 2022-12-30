@@ -10,27 +10,31 @@ int main()
 	Article art1(manager);
 	Article art2(manager);
 	Article art3(manager);
-
-	User user1(manager);
-	User user2(manager);
-	User user3(manager);
-
-	user1.like(art1);
-
-	user2.like(art1);
-	user2.like(art2);
-
-	user3.like(art1);
-	user3.like(art2);
-	user3.like(art3);
-
+	
 	art1.print();
 	art2.print();
 	art3.print();
 
-	user1.print();
-	user2.print();
-	user3.print();
+	// User user1(manager);
+	// User user2(manager);
+	// User user3(manager);
+
+	// user1.like(art1);
+
+	// user2.like(art1);
+	// user2.like(art2);
+
+	// user3.like(art1);
+	// user3.like(art2);
+	// user3.like(art3);
+
+	// art1.print();
+	// art2.print();
+	// art3.print();
+
+	// user1.print();
+	// user2.print();
+	// user3.print();
 
 
 	return 0;

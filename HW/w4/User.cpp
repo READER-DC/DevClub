@@ -29,6 +29,11 @@ void User::print () const
 
 	int limit = manager.getFavourites(this->innerID).size() - 1;
 
+	if (manager.getFavourites(this->innerID).empty()) 
+	{
+		return ;
+	}
+
 	for( int i = 0; i < limit; i++)
 	{
 		std::cout << "Like Art "<< manager.getFavourites(this->innerID).at(i) << ", ";

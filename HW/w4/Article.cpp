@@ -20,9 +20,14 @@ int Article::getID() const
 }
 void Article::print() const
 {
-		std::cout << "Article: " << this->innerID << "--->";
+	std::cout << "Article: " << this->innerID << "--->";
 
 	int limit = manager.getLikes(this->innerID).size() - 1;
+
+	if (manager.getLikes(this->innerID).empty()) 
+	{
+		return ;
+	}
 
 	for( int i = 0; i < limit; i++)
 	{

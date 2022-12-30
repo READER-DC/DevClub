@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Manager.h"
+
 class Article
 {
 public:
-	Article(int id);
+	Article(int id,  Manager& manager);
 	~Article();
 
 	int getID() const;
@@ -11,4 +13,5 @@ public:
 
 private:
 	int id;
+	Manager& manager;
 };

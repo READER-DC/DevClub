@@ -18,7 +18,6 @@ int User::getID () const
 }
 void User::like (Article& article)
 {
-	std::cout << __PRETTY_FUNCTION__ << std::endl;
 	this->manager.likeArticle(this->id, article.getID());
 }
 
@@ -30,7 +29,7 @@ void User::print () const
 
 	for( int i = 0; i < limit; i++)
 	{
-		std::cout << manager.getFavourites(this->id).at(i) << ", ";
+		std::cout << "Like Art "<< manager.getFavourites(this->id).at(i) << ", ";
 	}
-	std::cout << manager.getFavourites(this->id).at(limit) << std::endl;
+	std::cout << "Like Art "<< manager.getFavourites(this->id).at(limit) << std::endl;
 }

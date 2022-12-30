@@ -7,9 +7,9 @@
 int main()
 {
 	Manager manager;
-	Article art1(1);
-	Article art2(2);
-	Article art3(3);
+	Article art1(1, manager);
+	Article art2(2, manager);
+	Article art3(3, manager);
 
 	User user1(1, manager);
 	User user2(2, manager);

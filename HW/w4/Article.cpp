@@ -2,7 +2,7 @@
 
 #include "Article.h"
 
-Article::Article(int id)
+Article::Article(int id, Manager& manager) : manager(manager)
 {
 	this->id = id;
 }
@@ -17,5 +17,13 @@ int Article::getID() const
 }
 void Article::print() const
 {
-	std::cout << "Article: " << this->id << std::endl;
+		std::cout << "Article: " << this->id << "--->";
+
+	int limit = manager.getLikes(this->id).size() - 1;
+
+	for( int i = 0; i < limit; i++)
+	{
+		std::cout << "Like User " << manager.getLikes(this->id).at(i) << ", ";
+	}
+	std::cout << "Like User " << manager.getLikes(this->id).at(limit) << std::endl;
 }

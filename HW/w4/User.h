@@ -6,7 +6,7 @@
 class User
 {
 public:
-	User(int id, Manager& manager);
+	User(Manager& manager);
 	~User();
 	
 	int getID () const;
@@ -15,6 +15,9 @@ public:
 	void print () const;
 
 private:
-	int id;
+	static int id;
+
+	int innerID;
+
 	Manager& manager;
 };

@@ -2,10 +2,12 @@
 
 #include "User.h"
 
+int User::id = 0;
 
-User::User(int id, Manager& manager) : manager(manager)
+User::User(Manager& manager) : manager(manager)
 {
-	this->id = id;
+	User::id += 1;
+	this->innerID = User::id;
 }
 User::~User()
 {
@@ -14,22 +16,22 @@ User::~User()
 	
 int User::getID () const
 {
-	return this->id;
+	return this->innerID;
 }
 void User::like (Article& article)
 {
-	this->manager.likeArticle(this->id, article.getID());
+	this->manager.likeArticle(this->innerID, article.getID());
 }
 
 void User::print () const
 {
-	std::cout << "User: " << this->id << "--->";
+	std::cout << "User: " << this->innerID << "--->";
 
-	int limit = manager.getFavourites(this->id).size() - 1;
+	int limit = manager.getFavourites(this->innerID).size() - 1;
 
 	for( int i = 0; i < limit; i++)
 	{
-		std::cout << "Like Art "<< manager.getFavourites(this->id).at(i) << ", ";
+		std::cout << "Like Art "<< manager.getFavourites(this->innerID).at(i) << ", ";
 	}
-	std::cout << "Like Art "<< manager.getFavourites(this->id).at(limit) << std::endl;
+	std::cout << "Like Art "<< manager.getFavourites(this->innerID).at(limit) << std::endl;
 }

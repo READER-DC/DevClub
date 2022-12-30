@@ -7,13 +7,13 @@
 int main()
 {
 	Manager manager;
-	Article art1(1, manager);
-	Article art2(2, manager);
-	Article art3(3, manager);
+	Article art1(manager);
+	Article art2(manager);
+	Article art3(manager);
 
-	User user1(1, manager);
-	User user2(2, manager);
-	User user3(3, manager);
+	User user1(manager);
+	User user2(manager);
+	User user3(manager);
 
 	user1.like(art1);
 

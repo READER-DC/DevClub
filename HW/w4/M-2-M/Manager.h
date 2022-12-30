@@ -13,6 +13,7 @@ public:
 
 	std::vector<int> getFavourites(int userID) const;
 	std::vector<int> getLikes(int articleID) const;
+	
 private:
 	std::unordered_map<int,std::vector<int>> likes;
 	std::unordered_map<int,std::vector<int>> favourites;

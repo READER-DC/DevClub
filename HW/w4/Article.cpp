@@ -4,7 +4,7 @@
 
 int Article::id = 0;
 
-Article::Article(Manager& manager) : manager(manager)
+Article::Article()
 {
 	Article::id += 1;
 	this->innerID = Article::id;
@@ -22,16 +22,16 @@ void Article::print() const
 {
 	std::cout << "Article: " << this->innerID << "--->";
 
-	int limit = manager.getLikes(this->innerID).size() - 1;
+	int limit = Manager::getInstance().getLikes(this->innerID).size() - 1;
 
-	if (manager.getLikes(this->innerID).empty()) 
+	if (Manager::getInstance().getLikes(this->innerID).empty()) 
 	{
 		return ;
 	}
 
 	for( int i = 0; i < limit; i++)
 	{
-		std::cout << "Like User " << manager.getLikes(this->innerID).at(i) << ", ";
+		std::cout << "Like User " << Manager::getInstance().getLikes(this->innerID).at(i) << ", ";
 	}
-	std::cout << "Like User " << manager.getLikes(this->innerID).at(limit) << std::endl;
+	std::cout << "Like User " << Manager::getInstance().getLikes(this->innerID).at(limit) << std::endl;
 }

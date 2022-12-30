@@ -4,7 +4,7 @@
 
 int User::id = 0;
 
-User::User(Manager& manager) : manager(manager)
+User::User()
 {
 	User::id += 1;
 	this->innerID = User::id;
@@ -20,23 +20,23 @@ int User::getID () const
 }
 void User::like (Article& article)
 {
-	this->manager.likeArticle(this->innerID, article.getID());
+	Manager::getInstance().likeArticle(this->innerID, article.getID());
 }
 
 void User::print () const
 {
 	std::cout << "User: " << this->innerID << "--->";
 
-	int limit = manager.getFavourites(this->innerID).size() - 1;
+	int limit = Manager::getInstance().getFavourites(this->innerID).size() - 1;
 
-	if (manager.getFavourites(this->innerID).empty()) 
+	if (Manager::getInstance().getFavourites(this->innerID).empty()) 
 	{
 		return ;
 	}
 
 	for( int i = 0; i < limit; i++)
 	{
-		std::cout << "Like Art "<< manager.getFavourites(this->innerID).at(i) << ", ";
+		std::cout << "Like Art "<< Manager::getInstance().getFavourites(this->innerID).at(i) << ", ";
 	}
-	std::cout << "Like Art "<< manager.getFavourites(this->innerID).at(limit) << std::endl;
+	std::cout << "Like Art "<< Manager::getInstance().getFavourites(this->innerID).at(limit) << std::endl;
 }

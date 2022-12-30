@@ -7,8 +7,7 @@
 class Manager
 {
 public:
-	Manager();
-	~Manager();
+	static Manager& getInstance();
 
 	void likeArticle(int userID, int articleID);
 
